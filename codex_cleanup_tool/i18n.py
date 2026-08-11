@@ -13,7 +13,7 @@ LANGUAGE_LABELS = {
 
 
 ENGLISH_TEXT = {
-    "Codex 本地记录清理工具": "Codex Local Cleanup Tool",
+    "ChatGPT/Codex 本地历史记录清理工具": "ChatGPT/Codex Local History Cleanup Tool",
     "扫描文件数量与占用空间。清理项目只会移入 Windows 回收站。": "Scan local files and disk usage. Cleanup items are moved only to the Windows Recycle Bin.",
     "语言": "Language",
     "数据目录": "Data folder",
@@ -289,7 +289,7 @@ ENGLISH_TEXT = {
     "需要 Python 3.10 或更高版本。": "Python 3.10 or later is required.",
     "无法保存语言设置": "Unable to Save Language Setting",
     "语言设置未更改：": "The language setting was not changed: ",
-    "Codex 清理工具启动失败": "Codex Cleanup Tool Startup Failed",
+    "ChatGPT/Codex 本地历史记录清理工具启动失败": "ChatGPT/Codex Local History Cleanup Tool Startup Failed",
     "无法创建单实例锁": "Unable to create the single-instance lock",
 }
 

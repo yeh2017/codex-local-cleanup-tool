@@ -10,7 +10,7 @@ from typing import Optional
 from .i18n import ENGLISH, Translator
 
 
-WINDOW_TITLE = "Codex 本地记录清理工具"
+WINDOW_TITLE = "ChatGPT/Codex 本地历史记录清理工具"
 WINDOW_TITLES = (WINDOW_TITLE, Translator(ENGLISH)(WINDOW_TITLE))
 
 
@@ -51,7 +51,7 @@ def check_python_version(version=None) -> None:
 
 def show_native_error(
     message: str,
-    title: str = "Codex 清理工具启动失败",
+    title: str = "ChatGPT/Codex 本地历史记录清理工具启动失败",
 ) -> None:
     if os.name == "nt":
         ctypes.windll.user32.MessageBoxW(None, message, title, 0x10)

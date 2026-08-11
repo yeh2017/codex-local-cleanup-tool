@@ -195,7 +195,7 @@ class CleanupApp:
 
     def _configure_window(self):
         self.root.protocol("WM_DELETE_WINDOW", self._on_close)
-        self.root.title(self.translator("Codex 本地记录清理工具"))
+        self.root.title(self.translator("ChatGPT/Codex 本地历史记录清理工具"))
         self.root.geometry("1120x680")
         self.root.minsize(900, 560)
         self.root.option_add("*Font", ("Microsoft YaHei UI", 10))
@@ -255,7 +255,7 @@ class CleanupApp:
         header.pack(fill="x")
         ttk.Label(
             header,
-            text="Codex 本地记录清理工具",
+            text="ChatGPT/Codex 本地历史记录清理工具",
             font=("Microsoft YaHei UI", 17, "bold"),
         ).pack(side="left", anchor="w")
         self.language_combo = ttk.Combobox(
@@ -381,7 +381,7 @@ class CleanupApp:
             selected_tab = self.notebook.index(self.notebook.select())
         except (AttributeError, tk.TclError):
             selected_tab = 0
-        self.root.title(self.translator("Codex 本地记录清理工具"))
+        self.root.title(self.translator("ChatGPT/Codex 本地历史记录清理工具"))
         for variable in (
             self.status_var,
             self.selection_var,

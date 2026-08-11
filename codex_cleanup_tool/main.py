@@ -66,7 +66,7 @@ def main() -> int:
                     time.sleep(0.2)
             show_native_error(
                 translator("工具已经在其他 Windows 会话中运行，请先关闭该实例后再试。"),
-                translator("Codex 清理工具启动失败"),
+                translator("ChatGPT/Codex 本地历史记录清理工具启动失败"),
             )
             return 2
 
@@ -77,11 +77,11 @@ def main() -> int:
         root.withdraw()
         splash = tk.Toplevel(root)
         splash.title(translator(WINDOW_TITLE))
-        splash.geometry("340x112")
+        splash.geometry("520x112")
         splash.resizable(False, False)
         ttk.Label(
             splash,
-            text=translator("Codex 本地记录清理工具"),
+            text=translator("ChatGPT/Codex 本地历史记录清理工具"),
             font=("Microsoft YaHei UI", 12, "bold"),
         ).pack(pady=(22, 6))
         ttk.Label(
@@ -116,7 +116,10 @@ def main() -> int:
         if log_path:
             message += f"\n\n{translator('日志：')}{log_path}"
         try:
-            show_native_error(message, translator("Codex 清理工具启动失败"))
+            show_native_error(
+                message,
+                translator("ChatGPT/Codex 本地历史记录清理工具启动失败"),
+            )
         except Exception:
             pass
         return 1

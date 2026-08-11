@@ -7,13 +7,13 @@ $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $workspaceRoot = Split-Path -Parent $projectRoot
 $outputRoot = Join-Path $workspaceRoot 'outputs'
-$packageRoot = Join-Path $outputRoot 'codex_local_cleanup_tool_windows_x64'
-$zipPath = Join-Path $outputRoot 'codex_local_cleanup_tool_windows_x64.zip'
+$packageRoot = Join-Path $outputRoot 'chatgpt_codex_local_history_cleanup_tool_windows_x64'
+$zipPath = Join-Path $outputRoot 'chatgpt_codex_local_history_cleanup_tool_windows_x64.zip'
 $buildRoot = Join-Path $outputRoot '.pyinstaller-cleanup-tool'
 $distRoot = Join-Path $buildRoot 'dist'
 $workRoot = Join-Path $buildRoot 'work'
 $specRoot = Join-Path $buildRoot 'spec'
-$appName = 'Codex Local Cleanup Tool'
+$appName = 'ChatGPT-Codex Local History Cleanup Tool'
 $iconPath = Join-Path $projectRoot 'assets\codex_cleanup_tool.ico'
 
 if (-not $PythonExe) {

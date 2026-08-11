@@ -14,8 +14,8 @@ class PackageContentsTests(unittest.TestCase):
         self.assertIn("--onedir", script)
         self.assertIn("--windowed", script)
         self.assertIn("--icon", script)
-        self.assertIn("Codex Local Cleanup Tool", script)
-        self.assertIn("codex_local_cleanup_tool_windows_x64", script)
+        self.assertIn("ChatGPT-Codex Local History Cleanup Tool", script)
+        self.assertIn("chatgpt_codex_local_history_cleanup_tool_windows_x64", script)
         self.assertLess(
             script.index("Remove-Item -LiteralPath $zipPath"),
             script.index("-m PyInstaller"),
@@ -24,10 +24,14 @@ class PackageContentsTests(unittest.TestCase):
     def test_built_package_is_independent_folder(self):
         project_root = Path(__file__).resolve().parents[1]
         package_root = (
-            project_root.parent / "outputs" / "codex_local_cleanup_tool_windows_x64"
+            project_root.parent
+            / "outputs"
+            / "chatgpt_codex_local_history_cleanup_tool_windows_x64"
         )
 
-        self.assertTrue((package_root / "Codex Local Cleanup Tool.exe").is_file())
+        self.assertTrue(
+            (package_root / "ChatGPT-Codex Local History Cleanup Tool.exe").is_file()
+        )
         self.assertFalse((package_root / "Codex 本地记录清理工具.exe").exists())
         self.assertFalse((package_root / "CodexLocalCleanupTool.exe").exists())
         self.assertTrue((package_root / "_internal").is_dir())
@@ -45,7 +49,7 @@ class PackageContentsTests(unittest.TestCase):
         )
 
         self.assertIn("chcp 65001", launcher)
-        self.assertIn("Codex Local Cleanup Tool.exe", launcher)
+        self.assertIn("ChatGPT-Codex Local History Cleanup Tool.exe", launcher)
         self.assertIn("--startup-check", launcher)
         self.assertIn("startup.log", launcher)
         self.assertIn("pause", launcher.lower())
@@ -63,8 +67,8 @@ class PackageContentsTests(unittest.TestCase):
         executable = (
             project_root.parent
             / "outputs"
-            / "codex_local_cleanup_tool_windows_x64"
-            / "Codex Local Cleanup Tool.exe"
+            / "chatgpt_codex_local_history_cleanup_tool_windows_x64"
+            / "ChatGPT-Codex Local History Cleanup Tool.exe"
         )
 
         result = subprocess.run(
