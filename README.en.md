@@ -1,6 +1,4 @@
-# Codex Local Cleanup Tool
-
-English | [简体中文](README.md)
+# Codex Local Cleanup Tool [简体中文](README.md) | English
 
 An unofficial Windows GUI for inspecting, backing up, restoring, and cleaning local records created by the Codex desktop app. The interface supports Chinese and English.
 
@@ -34,36 +32,15 @@ Windows 32-bit, macOS, and Linux are not supported.
 - Back up, validate, clean, and compact old logs, with automatic rollback on failure.
 - Move allowlisted cache items to the Windows Recycle Bin instead of permanently deleting them.
 
-## Correctly Delete a History Task
-
-1. Fully exit the Codex desktop app and make sure it is no longer using the local databases.
-2. Start the tool and verify the `.codex` data folder and task backup folder.
-3. Select **Start Scan**, then select the tasks to delete in the history list.
-4. Review the task titles, counts, related log rows, and estimated space to be released.
-5. Select delete and confirm the operation again.
-6. The tool first creates and validates a persistent backup. It then moves session files to the Windows Recycle Bin and removes the matching database relationships, local task index entries, and related logs.
-7. Restart Codex and check that the sidebar has updated.
-
-Do not manually delete records from Codex databases, and do not use the Windows Recycle Bin as the only backup.
-
-## Correctly Restore a History Task
-
-1. Fully exit the Codex desktop app.
-2. Start the tool and verify that the current `.codex` folder matches the folder associated with the backup.
-3. Select **Restore Backup** on the history page.
-4. Select a task backup folder created by this tool, not a ZIP or an individual session file.
-5. Confirm the restore. The tool validates integrity and conflicts before restoring session files, database records, relationships, indexes, and related logs.
-6. Restart Codex and check the restored task.
-
-The tool refuses to overwrite an existing task with the same task ID. Restoring only session files from the Windows Recycle Bin does not reliably restore database relationships, indexes, or related logs; use **Restore Backup** whenever possible.
-
-## Paths and Local Data
+## Preparation, Paths, and Local Data
 
 The Codex data folder is detected in this order:
 
 1. The `CODEX_HOME` environment variable;
 2. `%USERPROFILE%\.codex`;
 3. The last folder selected manually.
+
+If no valid `.codex` folder is found, the tool does not create one and does not scan or delete anything. Use **Browse** to select a valid Codex data folder stored elsewhere; an ordinary folder is rejected.
 
 Settings and startup logs are stored under:
 
@@ -78,6 +55,57 @@ The default persistent backup folder is:
 ```
 
 You can change the backup folder in the application. If it is moved or deleted, the tool prompts you to recreate or locate it.
+
+Fully exit the Codex desktop app before backup, deletion, restore, or log optimization. Normal scanning and log-growth checks are read-only.
+
+## Scanning and General Cleanup
+
+Select **Start Scan** to display total `.codex` usage, reclaimable space, history tasks, the log database, and cache categories. Scanning does not modify files.
+
+Allowlisted cache, generated-image cache, visualization cache, and temporary files are moved to the Windows Recycle Bin. History tasks cannot be deleted from the general cleanup list; manage them individually on the history page.
+
+## Correctly Delete a History Task
+
+1. Fully exit Codex and make sure no Codex process is using the local databases.
+2. Start the tool and verify the `.codex` data folder and persistent backup folder. The backup folder must be outside `.codex`.
+3. Select **Start Scan**, open the history page, and select the tasks to delete.
+4. Review the task titles, count, and estimated space. Deleting a parent task also backs up and deletes its related child tasks.
+5. Select **Delete Selected** and review the confirmation again.
+6. The tool first creates and validates a persistent backup containing session files, task database records, task relationships, local index entries, and logs with matching task IDs.
+7. After validation, session files are moved to the Windows Recycle Bin. Matching tasks and relationships in `state_5.sqlite`, entries in `session_index.jsonl`, and related rows in `logs_2.sqlite` are removed together.
+8. If any step fails, the tool attempts to roll back the databases, index, and session files. If rollback also fails, it retains rescue snapshots and displays their paths.
+9. A successful deletion keeps the persistent backup. Restart Codex and check that the sidebar has updated.
+
+Do not manually delete records from Codex databases, and do not use the Windows Recycle Bin as the only backup.
+
+## Correctly Restore a History Task
+
+1. Fully exit Codex.
+2. Start the tool and select the valid `.codex` folder that will receive the restored task.
+3. Make sure the persistent backup folder is available, then select **Restore Backup** on the history page.
+4. Select one task backup folder created by the tool. It must contain `manifest.json`; do not select a ZIP, the backup root, or an individual session file.
+5. The tool validates file SHA-256 hashes, backup database integrity, task manifests, indexes, related logs, and `installation_id`. The data folder may move, but a backup cannot be restored into a different Codex data identity.
+6. Restore is refused if the destination already contains the same task ID, index entry, or related log data.
+7. After validation, the tool restores session files, task database records, relationships, local index entries, and related logs, and rewrites session paths for the current `.codex` location.
+8. A failed restore is rolled back. If rollback also fails, rescue snapshots are retained and their paths are displayed.
+9. Restart Codex and check the task, parent-child relationships, and history content.
+
+Restoring only session files from the Windows Recycle Bin does not fully restore database relationships, indexes, or related logs. Use **Restore Backup** whenever possible.
+
+## Log Diagnostics
+
+Log diagnostics inspect the `.codex\logs_2.sqlite` runtime log database. They do not read or modify chat message content. After a scan, the page shows:
+
+- Main database, WAL sidecar, and total storage size;
+- Total log row count;
+- Count and percentage of verbose `TRACE` rows;
+- Reclaimable free space inside the database.
+
+**Check Log Growth** performs two read-only samples over the selected interval. It calculates new rows, new `TRACE` rows, and file growth per minute, then reports idle, active, or high-frequency growth. It detects continuing abnormal writes but does not clean any data.
+
+**Safely Optimize Logs** deletes rows older than the selected retention period. Codex must be fully closed. The tool creates a temporary backup and checks integrity, deletes expired rows, truncates the WAL, runs `VACUUM`, and validates the result again. It restores the backup automatically on failure.
+
+Log optimization does not disable `TRACE` logging or fix the source of continuing writes. If high-frequency growth continues after optimization, investigate the Codex configuration, version, or runtime behavior.
 
 ## Safety Boundaries
 
