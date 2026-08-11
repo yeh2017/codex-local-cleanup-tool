@@ -1,8 +1,8 @@
 # Codex Local Cleanup Tool
 
-An unofficial Windows GUI for inspecting, backing up, restoring, and cleaning local records created by the Codex desktop app. The interface supports Chinese and English.
-
 English | [简体中文](README.md)
+
+An unofficial Windows GUI for inspecting, backing up, restoring, and cleaning local records created by the Codex desktop app. The interface supports Chinese and English.
 
 > This community project is not affiliated with or supported by OpenAI. Fully exit Codex before modifying local data.
 

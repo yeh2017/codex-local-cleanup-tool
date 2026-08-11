@@ -1,8 +1,8 @@
 # Codex 本地记录清理工具
 
-一个面向 Windows 10/11 64 位系统的本地 GUI 工具，用于扫描、备份、恢复和清理 Codex 桌面应用的本地记录。界面支持中文和英文。
-
 [English](README.en.md) | 简体中文
+
+一个面向 Windows 10/11 64 位系统的本地 GUI 工具，用于扫描、备份、恢复和清理 Codex 桌面应用的本地记录。界面支持中文和英文。
 
 > 本项目是非官方社区工具，不隶属于或由 OpenAI 提供支持。修改本地数据前请完全退出 Codex。
 
@@ -101,7 +101,3 @@ python -B -m unittest discover -s tests
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\build_cleanup_package.ps1
 ```
-
-## English
-
-For complete English instructions, see [README.en.md](README.en.md).
