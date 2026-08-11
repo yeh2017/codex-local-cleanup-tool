@@ -1,0 +1,8 @@
+.build-venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+cleanup_tool_settings.json
+outputs/
+*.log
+
