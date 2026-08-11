@@ -14,7 +14,7 @@ class PackageContentsTests(unittest.TestCase):
         self.assertIn("--onedir", script)
         self.assertIn("--windowed", script)
         self.assertIn("--icon", script)
-        self.assertIn("Codex 本地记录清理工具", script)
+        self.assertIn("Codex Local Cleanup Tool", script)
         self.assertIn("codex_local_cleanup_tool_windows_x64", script)
         self.assertLess(
             script.index("Remove-Item -LiteralPath $zipPath"),
@@ -27,7 +27,8 @@ class PackageContentsTests(unittest.TestCase):
             project_root.parent / "outputs" / "codex_local_cleanup_tool_windows_x64"
         )
 
-        self.assertTrue((package_root / "Codex 本地记录清理工具.exe").is_file())
+        self.assertTrue((package_root / "Codex Local Cleanup Tool.exe").is_file())
+        self.assertFalse((package_root / "Codex 本地记录清理工具.exe").exists())
         self.assertFalse((package_root / "CodexLocalCleanupTool.exe").exists())
         self.assertTrue((package_root / "_internal").is_dir())
         self.assertTrue((package_root / "diagnose_codex_cleanup_tool.bat").is_file())
@@ -44,7 +45,7 @@ class PackageContentsTests(unittest.TestCase):
         )
 
         self.assertIn("chcp 65001", launcher)
-        self.assertIn("Codex 本地记录清理工具.exe", launcher)
+        self.assertIn("Codex Local Cleanup Tool.exe", launcher)
         self.assertIn("--startup-check", launcher)
         self.assertIn("startup.log", launcher)
         self.assertIn("pause", launcher.lower())
@@ -63,7 +64,7 @@ class PackageContentsTests(unittest.TestCase):
             project_root.parent
             / "outputs"
             / "codex_local_cleanup_tool_windows_x64"
-            / "Codex 本地记录清理工具.exe"
+            / "Codex Local Cleanup Tool.exe"
         )
 
         result = subprocess.run(

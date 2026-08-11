@@ -3,7 +3,7 @@ chcp 65001 >nul
 setlocal EnableExtensions
 cd /d "%~dp0"
 
-set "APP_EXE=%~dp0Codex 本地记录清理工具.exe"
+set "APP_EXE=%~dp0Codex Local Cleanup Tool.exe"
 set "LOG_DIR=%LOCALAPPDATA%\CodexLocalCleanupTool\logs"
 set "STARTUP_LOG=%LOG_DIR%\startup.log"
 

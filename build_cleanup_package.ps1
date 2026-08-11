@@ -13,7 +13,7 @@ $buildRoot = Join-Path $outputRoot '.pyinstaller-cleanup-tool'
 $distRoot = Join-Path $buildRoot 'dist'
 $workRoot = Join-Path $buildRoot 'work'
 $specRoot = Join-Path $buildRoot 'spec'
-$appName = 'Codex 本地记录清理工具'
+$appName = 'Codex Local Cleanup Tool'
 $iconPath = Join-Path $projectRoot 'assets\codex_cleanup_tool.ico'
 
 if (-not $PythonExe) {

@@ -10,12 +10,12 @@ English | [简体中文](README.md)
 
 1. Download `codex_local_cleanup_tool_windows_x64.zip` from [Releases](https://github.com/yeh2017/codex-local-cleanup-tool/releases).
 2. Extract the complete folder. Do not copy only the EXE.
-3. Run `Codex 本地记录清理工具.exe`.
+3. Run `Codex Local Cleanup Tool.exe`.
 4. If startup fails, run `diagnose_codex_cleanup_tool.bat` from the same folder.
 
 The standalone package does not require Python, OpenCV, or other third-party runtimes. Because the EXE is unsigned, Windows SmartScreen may display a warning. Verify the SHA-256 value shown on the Release page before running it.
 
-Changing the interface to English does not rename the executable. Its filename remains `Codex 本地记录清理工具.exe`.
+The executable is named `Codex Local Cleanup Tool.exe` in both Chinese and English interface modes.
 
 ## Supported Systems
 

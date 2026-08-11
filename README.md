@@ -10,12 +10,12 @@
 
 1. 从 [Releases](https://github.com/yeh2017/codex-local-cleanup-tool/releases) 下载 `codex_local_cleanup_tool_windows_x64.zip`。
 2. 解压整个文件夹，不要只复制 EXE。
-3. 双击 `Codex 本地记录清理工具.exe`。
+3. 双击 `Codex Local Cleanup Tool.exe`。
 4. 如果启动失败，运行同目录下的 `diagnose_codex_cleanup_tool.bat` 查看诊断信息。
 
 独立文件夹版不要求安装 Python、OpenCV 或其他第三方运行库。未签名的 EXE 可能触发 Windows SmartScreen，请核对 Release 页面中的 SHA-256 后再运行。
 
-切换到英文界面后，程序文件名仍为 `Codex 本地记录清理工具.exe`，不会变为英文文件名。
+程序文件名统一为 `Codex Local Cleanup Tool.exe`。中文和英文界面使用同一个 EXE。
 
 ## 支持系统
 
@@ -105,4 +105,3 @@ powershell -ExecutionPolicy Bypass -File .\build_cleanup_package.ps1
 ## English
 
 For complete English instructions, see [README.en.md](README.en.md).
-
